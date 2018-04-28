@@ -28,7 +28,7 @@ export default {
   methods: {
     getCurrentHeadlines() {
       const self = this;
-      let countryCode = "us";
+      let countryCode = "gb";
       axios
         .get(
           `https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${
