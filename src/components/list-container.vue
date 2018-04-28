@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-      <div class="row">
+      <div class="loader" v-if="loading & !newsList"></div>
+      <div class="row" v-else>
         <headline v-for="news in newsList" :newsItem="news" :key="news.url"> </headline>
       </div>
-
     </div>
 </template>
 
@@ -28,21 +28,22 @@ export default {
   methods: {
     getCurrentHeadlines() {
       const self = this;
-      let countryCode = "gb";
       axios
         .get(
-          `https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${
+          `https://newsapi.org/v2/everything?q=javascript&apiKey=${
             sysVar.APIKEY
           }`
         )
         .then(response => {
           const data = response.data;
           if (data.status == "ok") {
+            self.loading = false;
             self.newsList = data.articles;
             console.log(self.newsList);
           }
         })
         .catch(error => {
+          self.loading = false;
           console.error(error);
         });
     }
