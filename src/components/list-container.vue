@@ -11,6 +11,7 @@
 import axios from "axios";
 import sysVar from "../../config/sysVar.env";
 import Headline from "./list-item";
+import store from "../util/indexDB";
 export default {
   name: "",
   components: {
@@ -39,7 +40,7 @@ export default {
           if (data.status == "ok") {
             self.loading = false;
             self.newsList = data.articles;
-            console.log(self.newsList);
+            store.addHeadlines(data.articles);
           }
         })
         .catch(error => {
