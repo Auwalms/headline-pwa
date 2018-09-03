@@ -1,6 +1,6 @@
 # headlines
 
-> A News headlines PWA
+> A Progressive Web App that displays all the current headlines in a country based on the category specified in the code. 
 
 ## Build Setup
 
